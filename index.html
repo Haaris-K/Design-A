@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cineplex Prototype - 3 Step Booking Flow</title>
+  <!-- Wireframe Stylesheet (in css folder) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/analytics.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       USABILITY TESTING TOOLBAR (FOR RECORDING PARTICIPANT SESSIONS)
+       ==================================================================== -->
+  <aside class="testing-bar" aria-label="Usability Testing Controller">
+    <div class="testing-bar-inner">
+      <div class="testing-info">
+        <span class="testing-badge">🧪 Testing Mode</span>
+        <label for="tester-select" class="testing-label">Participant:</label>
+        <select id="tester-select" class="testing-select">
+          <option value="User 1">User 1</option>
+          <option value="User 2">User 2</option>
+          <option value="User 3">User 3</option>
+          <option value="User 4">User 4</option>
+        </select>
+        <span class="testing-timer" id="testing-timer">⏱ 00:00</span>
+        <span class="testing-status" id="testing-status">Status: Ready</span>
+      </div>
+      <div class="testing-actions">
+        <button type="button" class="btn-testing" id="btn-start-test">Start Test</button>
+        <button type="button" class="btn-testing" id="btn-reset-test">Reset</button>
+        <button type="button" class="btn-testing btn-testing-primary" id="btn-view-analytics">
+          📊 View Analytics (<span id="saved-sessions-count">0</span>)
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Notification Banner when a test run is saved -->
+  <div class="testing-notification" id="testing-notification">
+    <span id="testing-notif-message">✓ Test run recorded!</span>
+    <button type="button" class="testing-notification-close" id="testing-notif-close" title="Dismiss">&times;</button>
+  </div>
+
+  <!-- Main Prototype Shell -->
+  <div class="prototype-container">
+
+    <!-- Step Navigation Controller (Enables moving between the 3 sketch steps) -->
+    <header class="step-navigation-bar">
+      <nav class="step-tabs" aria-label="Prototype Steps">
+        <button type="button" class="step-tab active" data-step="1">Browse &amp; Select</button>
+        <button type="button" class="step-tab" data-step="2">Sign In / Guest</button>
+        <button type="button" class="step-tab" data-step="3">Seats &amp; Payment</button>
+      </nav>
+      <div class="nav-buttons">
+        <button type="button" class="btn-nav" id="btn-prev-step" disabled>&larr; Previous</button>
+        <button type="button" class="btn-nav" id="btn-next-step">Next &rarr;</button>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         STEP 1 SCREEN: SKETCH 1 (HEADER, 3 FILTERS, MOVIE SELECTION)
+         ==================================================================== -->
+    <main id="step-1-screen" class="step-screen active">
+
+      <!-- Sketch 1: Top Navigation Bar -->
+      <section class="wireframe-header">
+        <div class="header-left">
+          <button type="button" class="menu-btn">&#9776; Menu</button>
+        </div>
+        <div class="header-center">
+          <span>&copy; CINEPLEX</span>
+        </div>
+        <div class="header-right">
+          <span class="placeholder-line" title="Profile / Search placeholder"></span>
+        </div>
+      </section>
+
+      <!-- Sketch 1: Three Filter / Dropdown Boxes -->
+      <section class="filters-row">
+        <!-- Filter 1: Select Movie -->
+        <div class="filter-box">
+          <label for="filter-movie">Movie</label>
+          <div class="filter-control">
+            <select id="filter-movie">
+              <!-- Populated by JavaScript from local JSON -->
+            </select>
+            <span class="filter-icon" aria-hidden="true">&#127916;</span>
+          </div>
+        </div>
+
+        <!-- Filter 2: Select Date & Time -->
+        <div class="filter-box">
+          <label for="filter-date">Date &amp; Time</label>
+          <div class="filter-control">
+            <select id="filter-date">
+              <!-- Populated by JavaScript from local JSON -->
+            </select>
+            <span class="filter-icon" aria-hidden="true">&#128197;</span>
+          </div>
+        </div>
+
+        <!-- Filter 3: Select Location -->
+        <div class="filter-box">
+          <label for="filter-cinema">Location</label>
+          <div class="filter-control">
+            <select id="filter-cinema">
+              <!-- Populated by JavaScript from local JSON -->
+            </select>
+            <span class="filter-icon" aria-hidden="true">&#128205;</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 1 Content Area: Movie Listing Cards -->
+      <section>
+        <h3 class="movie-section-title">Now Showing</h3>
+        <div class="movies-grid" id="movies-list">
+          <!-- Populated dynamically from local JSON data -->
+        </div>
+      </section>
+
+      <!-- Step 1 Continue Action -->
+      <div class="step-action-bar">
+        <button type="button" class="btn-primary" id="step1-continue-btn" style="max-width: 220px;">Continue to Sign In
+          &rarr;</button>
+      </div>
+
+    </main>
+
+    <!-- ====================================================================
+         STEP 2 SCREEN: SKETCH 2 (SIGN UP, OR, LOG IN, SIGN IN AS GUEST)
+         ==================================================================== -->
+    <section id="step-2-screen" class="step-screen">
+      <div class="auth-step-wrapper">
+
+        <!-- Sketch 2: Sign Up vs Log In Cards -->
+        <div class="auth-columns">
+
+          <!-- Left Card: SIGN UP -->
+          <div class="auth-card">
+            <h3>SIGN UP</h3>
+            <form id="signup-form">
+              <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" class="form-input" placeholder="e.g. Jane Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" class="form-input" placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-pass">Password</label>
+                <input type="password" id="signup-pass" class="form-input" placeholder="••••••••" required>
+              </div>
+              <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+          </div>
+
+          <!-- Middle Divider: OR -->
+          <div class="auth-divider">
+            <span>or</span>
+          </div>
+
+          <!-- Right Card: LOG IN -->
+          <div class="auth-card">
+            <h3>LOG IN</h3>
+            <form id="login-form">
+              <div class="form-group">
+                <label for="login-email">Email / Username</label>
+                <input type="text" id="login-email" class="form-input" placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="login-pass">Password</label>
+                <input type="password" id="login-pass" class="form-input" placeholder="••••••••" required>
+              </div>
+              <div class="form-group" style="visibility: hidden;">
+                <!-- Spacer to keep boxes balanced -->
+                <label>&nbsp;</label>
+                <input type="text" class="form-input" disabled>
+              </div>
+              <button type="submit" class="btn-primary">Log In</button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Sketch 2: Bottom Button - SIGN IN AS GUEST -->
+        <div class="guest-card-container">
+          <button type="button" class="btn-guest" id="btn-guest-signin">
+            SIGN IN AS GUEST
+            <div class="guest-subtitle">(Skip account creation &amp; proceed directly to checkout)</div>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         STEP 3 SCREEN: SKETCH 3 (EMAIL, PICK SEATS, PAYMENT DETAIL & CART)
+         ==================================================================== -->
+    <section id="step-3-screen" class="step-screen">
+      <div class="step3-container">
+
+        <!-- Sketch 3: Top Row - Enter your email -->
+        <div class="email-input-row">
+          <label for="checkout-email">Enter your email</label>
+          <input type="email" id="checkout-email" placeholder="example@email.com" value="guest@example.com" required>
+        </div>
+
+        <!-- Sketch 3: Middle Area - Pick your seats -->
+        <div class="seats-section">
+          <div class="seats-header">Pick your seats</div>
+
+          <!-- Screen Bar -->
+          <div class="screen-bar">[ SCREEN ]</div>
+
+          <!-- Interactive Seat Grid -->
+          <div class="seats-grid" id="seats-grid-container">
+            <!-- Populated dynamically by script.js -->
+          </div>
+
+          <!-- Seat Legend -->
+          <div class="seats-legend">
+            <div class="legend-item">
+              <div class="legend-box avail"></div>
+              <span>Available</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-box sel"></div>
+              <span>Selected</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-box occ"></div>
+              <span>Occupied</span>
+            </div>
+          </div>
+
+          <!-- Live Selection & Price Summary -->
+          <div class="seat-selection-summary" id="seat-summary-text">
+            Selected Seats: C4, C5, C6 (3 seats) — Total: $37.50
+          </div>
+        </div>
+
+        <!-- Sketch 3: Bottom Section - Payment detail with 4 inputs and cart button -->
+        <div class="payment-section">
+          <div class="payment-title">Payment detail:</div>
+
+          <div class="payment-grid-row">
+            <div class="payment-inputs">
+              <input type="text" id="pay-card-num" placeholder="Card Number" value="4532 •••• •••• 8892">
+              <input type="text" id="pay-card-name" placeholder="Name on Card" value="Jane Doe">
+              <input type="text" id="pay-card-exp" placeholder="MM / YY" value="09/28">
+              <input type="text" id="pay-card-cvv" placeholder="CVV" value="382">
+            </div>
+
+            <!-- Sketch 3 Right Button: Cart Icon Checkout Button -->
+            <button type="button" class="btn-checkout-cart" id="btn-checkout-submit" title="Pay and Confirm Order">
+              &#128722;
+              <span>CONFIRM</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Confirmation Feedback Box (revealed on checkout click) -->
+        <div class="confirmation-box" id="booking-confirmation">
+          <h3>&#10003; Booking Confirmed!</h3>
+          <p id="confirmation-details"></p>
+          <button type="button" class="btn-nav" id="btn-restart" style="margin-top: 10px;">Book Another Movie</button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ====================================================================
+       USABILITY ANALYTICS MODAL DIALOG
+       ==================================================================== -->
+  <div class="analytics-modal-backdrop" id="analytics-modal" style="display: none;">
+    <div class="analytics-modal-content">
+      <div class="analytics-modal-header">
+        <h2>📊 Usability Testing Analytics &amp; Results</h2>
+        <button type="button" class="btn-modal-close" id="btn-close-analytics" title="Close">&times;</button>
+      </div>
+
+      <div class="analytics-modal-body">
+        <!-- Overview Stat Cards -->
+        <div class="analytics-stats-grid" id="analytics-stats-grid">
+          <!-- Populated by js/analytics.js -->
+        </div>
+
+        <!-- Participant Test Runs Table -->
+        <div class="analytics-section-title">Participant Test Sessions</div>
+        
+        <div class="empty-data-msg" id="analytics-empty-msg">
+          No test sessions recorded yet. Run tests with participants or click <strong>"Load 4 Sample Users"</strong> below to preview the analytics.
+        </div>
+
+        <div class="analytics-table-container" id="analytics-table-wrapper" style="display: none;">
+          <table class="analytics-table">
+            <thead>
+              <tr>
+                <th>Participant</th>
+                <th>Total Time</th>
+                <th>Step 1</th>
+                <th>Step 2</th>
+                <th>Step 3</th>
+                <th>Movie</th>
+                <th>Showtime</th>
+                <th>Auth Type</th>
+                <th>Seats</th>
+                <th>Total</th>
+                <th>Timeline</th>
+              </tr>
+            </thead>
+            <tbody id="analytics-table-body">
+              <!-- Populated by js/analytics.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed Action Timeline View -->
+        <div class="action-timeline-view" id="action-timeline-view">
+          <div class="action-timeline-header">
+            <span class="action-timeline-title" id="timeline-title">Actions Timeline</span>
+          </div>
+          <ul class="timeline-list" id="timeline-list">
+            <!-- Populated by js/analytics.js -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Modal Footer Toolbar -->
+      <div class="analytics-modal-footer">
+        <div class="footer-actions-left">
+          <button type="button" class="btn-testing btn-testing-primary" id="btn-export-csv">
+            ⬇ Export CSV (Excel)
+          </button>
+          <button type="button" class="btn-testing" id="btn-export-json">
+            ⬇ Export JSON
+          </button>
+          <button type="button" class="btn-testing" id="btn-load-sample">
+            Load 4 Sample Users
+          </button>
+        </div>
+        <div class="footer-actions-right">
+          <button type="button" class="btn-testing" id="btn-clear-analytics" style="color: #b00020;">
+            Clear All Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript (in js folder) -->
+  <script src="js/analytics.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

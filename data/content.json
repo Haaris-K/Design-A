@@ -1,0 +1,46 @@
+{
+  "cinemas": [
+    "Downtown Cinema",
+    "West End Cineplex",
+    "Northside Plaza"
+  ],
+  "dates": [
+    "Today, Oct 8",
+    "Tomorrow, Oct 9",
+    "Friday, Oct 10"
+  ],
+  "movies": [
+    {
+      "id": "m1",
+      "title": "The Silent Horizon",
+      "genre": "Sci-Fi / Adventure",
+      "duration": "142 min",
+      "rating": "PG-13",
+      "showtimes": ["1:30 PM", "4:15 PM", "7:00 PM", "9:45 PM"]
+    },
+    {
+      "id": "m2",
+      "title": "City Lights & Shadows",
+      "genre": "Mystery / Drama",
+      "duration": "118 min",
+      "rating": "R",
+      "showtimes": ["2:00 PM", "5:30 PM", "8:15 PM"]
+    },
+    {
+      "id": "m3",
+      "title": "Echoes of Tomorrow",
+      "genre": "Action / Thriller",
+      "duration": "130 min",
+      "rating": "PG-13",
+      "showtimes": ["12:45 PM", "3:45 PM", "6:30 PM", "9:15 PM"]
+    }
+  ],
+  "seatRows": [
+    { "row": "A", "seats": 10 },
+    { "row": "B", "seats": 10 },
+    { "row": "C", "seats": 10 },
+    { "row": "D", "seats": 10 },
+    { "row": "E", "seats": 10 }
+  ],
+  "ticketPrice": 12.50
+}

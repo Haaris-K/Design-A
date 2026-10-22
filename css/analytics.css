@@ -1,0 +1,415 @@
+/* ==========================================================================
+   USABILITY TESTING & ANALYTICS STYLES
+   - Mid-fidelity wireframe styling matching the prototype
+   - Clean, simple, grayscale/monochrome theme
+   ========================================================================== */
+
+/* --- Top Testing Control Bar --- */
+.testing-bar {
+  max-width: 960px;
+  margin: 0 auto 16px auto;
+  background-color: #ffffff;
+  border: 2px solid #333333;
+  border-radius: 8px;
+  padding: 12px 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.testing-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.testing-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.testing-badge {
+  background-color: #222222;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.testing-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.testing-select {
+  padding: 5px 10px;
+  font-size: 13px;
+  border: 1px solid #555555;
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.testing-select:focus {
+  outline: 2px solid #333333;
+}
+
+.testing-timer {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  padding: 4px 10px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.testing-status {
+  font-size: 12px;
+  color: #555555;
+  font-style: italic;
+}
+
+.testing-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-testing {
+  background-color: #ffffff;
+  color: #222222;
+  border: 1px solid #333333;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-testing:hover {
+  background-color: #e5e5e5;
+}
+
+.btn-testing-primary {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.btn-testing-primary:hover {
+  background-color: #444444;
+}
+
+.btn-testing:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --- Feedback Notification Banner --- */
+.testing-notification {
+  display: none;
+  max-width: 960px;
+  margin: 0 auto 16px auto;
+  background-color: #f0f0f0;
+  border: 1px solid #333333;
+  border-left: 5px solid #222222;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 13px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testing-notification.active {
+  display: flex;
+}
+
+.testing-notification-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- Analytics Modal Backdrop & Shell --- */
+.analytics-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.analytics-modal-content {
+  background-color: #ffffff;
+  border: 2px solid #222222;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 920px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.analytics-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background-color: #eeeeee;
+  border-bottom: 2px solid #333333;
+}
+
+.analytics-modal-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #222222;
+}
+
+.btn-modal-close {
+  background: none;
+  border: 1px solid #777777;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.btn-modal-close:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.analytics-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* --- Summary Stat Cards Grid --- */
+.analytics-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background-color: #fafafa;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.stat-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 6px;
+}
+
+.stat-card-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #222222;
+  margin-bottom: 4px;
+}
+
+.stat-card-subtitle {
+  font-size: 12px;
+  color: #666666;
+}
+
+/* --- Section Titles inside Modal --- */
+.analytics-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #333333;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+/* --- Results Table --- */
+.analytics-table-container {
+  overflow-x: auto;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.analytics-table th {
+  background-color: #eeeeee;
+  color: #222222;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-bottom: 2px solid #333333;
+  white-space: nowrap;
+}
+
+.analytics-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+.analytics-table tr:nth-child(even) td {
+  background-color: #fbfbfb;
+}
+
+.analytics-table tr:hover td {
+  background-color: #f0f0f0;
+}
+
+.table-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: #e5e5e5;
+  border: 1px solid #cccccc;
+}
+
+.table-btn-small {
+  padding: 3px 7px;
+  font-size: 11px;
+  background-color: #ffffff;
+  border: 1px solid #555555;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.table-btn-small:hover {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+/* --- Action Timeline / Log Drawer --- */
+.action-timeline-view {
+  background-color: #f7f7f7;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.action-timeline-view.active {
+  display: block;
+}
+
+.action-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.action-timeline-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.timeline-list li {
+  padding: 5px 0;
+  border-bottom: 1px dashed #dddddd;
+  display: flex;
+  gap: 12px;
+}
+
+.timeline-offset {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  color: #555555;
+  min-width: 55px;
+}
+
+.timeline-step {
+  font-weight: 600;
+  color: #222222;
+  min-width: 60px;
+}
+
+.timeline-desc {
+  color: #333333;
+  flex: 1;
+}
+
+/* --- Modal Footer & Export Bar --- */
+.analytics-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 20px;
+  background-color: #eeeeee;
+  border-top: 2px solid #333333;
+}
+
+.footer-actions-left {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-actions-right {
+  display: flex;
+  gap: 8px;
+}
+
+/* Empty State Message */
+.empty-data-msg {
+  text-align: center;
+  padding: 30px;
+  color: #777777;
+  font-size: 13px;
+}
